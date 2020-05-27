@@ -11,8 +11,8 @@ Um den Schritten zu folgen, bitte dieses Repo clonen oder als ZIP herunterladen 
 
 Die Installation von Docker erfordert eine beliebige Linux Distribution (Ich empfehle Ubuntu oder Debian) oder Microsoft Windows 10 Pro / Enterprise als zugrunde liegendes Betriebssystem.
 
-Alternativ lässt sich Docker auch unter Windows 10 **Home** unter der aktuellsten Insider Preview per WSL2 zum Laufen bringen.<br>
-Hierfür ist mindestens die Windows Version **2004** erforderlich.
+Alternativ lässt sich Docker auch unter Windows 10 **Home** unter der (zum Zeitpunkt des Verfassens) aktuellsten Insider Preview per WSL2 zum Laufen bringen.<br>
+Hierfür ist mindestens die Windows 10 Version **2004** erforderlich.
 
 ### Links
 
@@ -39,11 +39,14 @@ Läd das Portainer Image herunter und startet es innerhalb eines neuen Container
 
 ### Erläuterung der Flags
 - `-p <container_port>:<host_port>`<br>
-  Veröffentlicht einen internen Port des Containers auf einen des Hosts. Im Falle von Portainer befindet sich hier die Web Oberfläche, die dann auf der gleichen Maschine über ´http://localhost:9000/` aufgerufen werden kann.
+  Veröffentlicht einen internen Port des Containers auf einen des Hosts. Im Falle von Portainer befindet sich hier die Web Oberfläche, die dann auf der gleichen Maschine über http://localhost:9000/ aufgerufen werden kann.
+
 - `--restart always`<br>
   Erlaubt es dem Container, automatisch nach einem neustart der Docker Instanz, bzw. eines Serverneustarts, sich selbst erneut hochzufahren.
+
 - `-v /var/run/docker.sock:/var/run/docker.sock`<br>
   Gibt dem Container Zugriff auf den Docker Socket, womit Portainer mit der Docker Instanz interagieren kann.
+
 - `-v portainer_data:/data`<br>
   Gibt dem Container Zugriff auf das zuvor angelegte Volume für persistente Datenspeicherung.
 
@@ -59,7 +62,7 @@ Dies erstellt Container, deren Parameter in der `docker-compose.yml` definiert s
 
 ## Reverse-Proxy mit Traefik
 
-Traefik arbeitet dabei als Reverse-Proxy und veröffentlicht den `whoami` service unter der URL `http://whoami.localhost/`
+Traefik arbeitet dabei als Reverse-Proxy und veröffentlicht den `whoami` service unter der URL http://whoami.localhost/
 
 Hierfür verantwortlich sind die folgenden Zeilen der `docker-compose.yml`:
 
